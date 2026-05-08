@@ -1,0 +1,11 @@
+Test Case ID,Description,Expected Result
+TC-01,Verify Home Page title and meta tags.,The page title should contain "Telnyx" and "Voice AI".
+TC-02,Verify "Sign Up" button redirects to the registration page.,The URL should change to the sign-up page (e.g. /sign-up).
+TC-03,Verify "Log In" button redirects to the login portal.,The URL should change to portal.telnyx.com or /log-in.
+TC-04,Verify navigation to the "Pricing" page via header menu.,The URL should change to /pricing and a pricing heading should be visible.
+TC-05,Verify navigation to the "Voice API" product page.,The Voice API page should load with relevant content.
+TC-06,Verify the presence of the "Network" page.,The Network page should load successfully.
+TC-07,Verify the "Talk to an expert" or "Contact Us" button opens the contact form.,A contact form or a new page for contacting sales should appear.
+TC-08,Verify footer links (e.g. Terms and Conditions).,Clicking on Terms and Conditions should navigate to the correct legal page.
+TC-09,Verify "Company" or "About Us" page load.,The Company page should load successfully.
+TC-10,Verify cookie consent popup or privacy policy link visibility.,A cookie consent banner should be visible or Privacy Policy link should be present in the footer.
