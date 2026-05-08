@@ -1,24 +1,47 @@
-# cypress
-TestSquad intership
+# Cypress Test Automation - Telnyx
 
-## Запуск тестів (Running tests)
+This project contains automated end-to-end tests for the Telnyx website using Cypress and the Page Object Model (POM) pattern.
 
-Для запуску тестів ви можете використовувати наступні команди:
+## Project Description
+The goal of this project is to verify the core functionality of the Telnyx website, including navigation, page loading, and key UI elements. Tests are designed to be maintainable and scalable by following best practices like POM, custom commands, and fixtures.
 
-### 1. Графічний режим (Cypress Test Runner)
-Рекомендується для розробки та перегляду того, як проходять тести.
+## Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [Cypress](https://www.cypress.io/)
+
+### Installation
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+## Running Tests
+
+You can use the following commands to run tests in different modes:
+
+### 1. Interactive Mode (Cypress Test Runner)
+Recommended for development and debugging.
 ```bash
-npx cypress open
+npm run cy:open
 ```
 
-### 2. Фоновий режим (Headless)
-Швидкий запуск у консолі без відкриття браузера (як у CI/CD).
+### 2. Headless Mode
+Fast execution in the console without opening a browser (ideal for CI/CD).
 ```bash
-npx cypress run
+npm run cy:run
 ```
 
-### 3. Запуск з кастомним конфігом
-Запуск тестів з використанням альтернативного конфігураційного файлу.
+### 3. Run with Custom Configuration
+Run tests using an alternative configuration file.
 ```bash
-npx cypress run --config-file cypress.custom.config.js
+npm run cy:run:custom
+```
+
+### 4. Standard Test Command
+Runs the full suite in headless mode.
+```bash
+npm test
 ```

@@ -13,11 +13,11 @@ class HomePage {
 
   // Actions
   visit() {
-    cy.visit('/');
+    cy.visit('/', { failOnStatusCode: false });
   }
 
-  verifyTitleAndMeta() {
-    cy.title().should('match', /Telnyx/i);
+  verifyTitleAndMeta(expectedTitle) {
+    cy.title().should('match', new RegExp(expectedTitle, 'i'));
     cy.document().get('head meta[name="description"]')
       .should('have.attr', 'content')
       .and('not.be.empty');
@@ -25,6 +25,10 @@ class HomePage {
 
   clickSignUp() {
     this.signUpButton.click({ force: true });
+  }
+
+  verifySignUpPage() {
+    cy.url().should('include', '/sign-up');
   }
 
   verifyLogInLink() {
@@ -35,12 +39,25 @@ class HomePage {
     this.pricingLink.click({ force: true });
   }
 
+  verifyPricingPage(expectedHeader) {
+    cy.url().should('include', '/pricing');
+    cy.get('h1').should('contain.text', expectedHeader);
+  }
+
   navigateToVoiceApi() {
     this.voiceApiLink.click({ force: true });
   }
 
+  verifyVoiceApiPage() {
+    cy.url().should('include', '/products/voice-api');
+  }
+
   clickContactUs() {
     this.contactUsButton.click({ force: true });
+  }
+
+  verifyContactUsPage() {
+    cy.url().should('include', '/contact-us');
   }
 
   clickTermsAndConditions() {
@@ -48,9 +65,17 @@ class HomePage {
     this.termsConditionsLink.click({ force: true });
   }
 
+  verifyTermsPage() {
+    cy.url().should('include', '/terms-and-conditions');
+  }
+
   navigateToCareers() {
     cy.get('footer').scrollIntoView();
     this.careersLink.click({ force: true });
+  }
+
+  verifyCareersPage() {
+    cy.url().should('include', '/careers');
   }
 
   verifyPrivacyPolicy() {

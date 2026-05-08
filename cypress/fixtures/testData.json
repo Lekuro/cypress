@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "pricing": "/pricing",
+    "voiceApi": "/products/voice-api",
+    "careers": "/careers",
+    "contactUs": "/contact-us",
+    "signUp": "/sign-up",
+    "terms": "/terms-and-conditions",
+    "solutions": "/solutions"
+  },
+  "expectedText": {
+    "pricingHeader": "Pricing",
+    "titleMatch": "Telnyx"
+  }
+}

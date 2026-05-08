@@ -1,7 +1,14 @@
 import HomePage from '../pages/HomePage';
 
 describe('Telnyx Site Test Plan (POM)', () => {
+  let testData;
+
   beforeEach(() => {
+    // Load test data from fixture
+    cy.fixture('testData').then((data) => {
+      testData = data;
+    });
+
     // Handling uncaught exceptions to prevent tests from failing on non-critical app errors
     Cypress.on('uncaught:exception', (err, runnable) => {
       return false;
@@ -11,14 +18,14 @@ describe('Telnyx Site Test Plan (POM)', () => {
   // TC-01
   it('Verify Home Page title and meta tags', () => {
     HomePage.visit();
-    HomePage.verifyTitleAndMeta();
+    HomePage.verifyTitleAndMeta(testData.expectedText.titleMatch);
   });
 
   // TC-02
   it('Verify "Sign Up" button redirects to the registration page', () => {
     HomePage.visit();
     HomePage.clickSignUp();
-    cy.url().should('include', '/sign-up');
+    HomePage.verifySignUpPage();
   });
 
   // TC-03
@@ -31,21 +38,19 @@ describe('Telnyx Site Test Plan (POM)', () => {
   it('Verify navigation to the "Pricing" page via header menu', () => {
     HomePage.visit();
     HomePage.navigateToPricing();
-    cy.url().should('include', '/pricing');
-    cy.get('h1').should('contain.text', 'Pricing');
+    HomePage.verifyPricingPage(testData.expectedText.pricingHeader);
   });
 
   // TC-05
   it('Verify navigation to the "Voice API" product page', () => {
     HomePage.visit();
     HomePage.navigateToVoiceApi();
-    cy.url().should('include', '/products/voice-api');
+    HomePage.verifyVoiceApiPage();
   });
 
   // TC-06
-  it('Verify the presence of the "Solutions" page', () => {
-    cy.visit('/solutions');
-    cy.url().should('include', '/solutions');
+  it('Verify the presence of the "Solutions" page using custom command', () => {
+    cy.visitPageAndVerifyUrl(testData.pages.solutions);
     cy.get('h1').should('be.visible');
   });
 
@@ -53,21 +58,21 @@ describe('Telnyx Site Test Plan (POM)', () => {
   it('Verify the "Contact Us" button opens the contact form', () => {
     HomePage.visit();
     HomePage.clickContactUs();
-    cy.url().should('include', '/contact-us');
+    HomePage.verifyContactUsPage();
   });
 
   // TC-08
   it('Verify footer links (e.g. Terms and Conditions)', () => {
     HomePage.visit();
     HomePage.clickTermsAndConditions();
-    cy.url().should('include', '/terms-and-conditions');
+    HomePage.verifyTermsPage();
   });
 
   // TC-09
   it('Verify "Careers" page load', () => {
     HomePage.visit();
     HomePage.navigateToCareers();
-    cy.url().should('include', '/careers');
+    HomePage.verifyCareersPage();
   });
 
   // TC-10
